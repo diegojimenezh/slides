@@ -1,0 +1,93 @@
+% !TeX root = main.tex
+
+{ 
+%\setbeamertemplate{section in toc}{\colorbox{lightash}{\textcolor{white}{\inserttocsectionnumber}}\enskip\textcolor{black}{\inserttocsection}}
+\setbeamertemplate{section in toc}{\textcolor{gray}{\inserttocsectionnumber.}\enskip\textcolor{black}{\inserttocsection}}
+% \setbeamertemplate{footline}{
+% 	\leavevmode%
+% 	\hbox{%
+% 	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5em,right]{title in head/foot}%
+% 		  \textcolor{gray}{
+% 		  Dean Li \, $\Big\vert$ \,\,\quad \hyperlink{slide:outline}{$\bullet$} \,\quad }   \hspace*{2ex} 
+% 	\end{beamercolorbox}}%
+% 	\vskip0pt%
+% }
+%\setbeamertemplate{footline}{
+%	\leavevmode%
+%	\hbox{%
+%	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5em,right]{title in head/foot}%
+%		\textcolor{gray}{
+%		Diego Jim\'enez Hern\'andez (Stanford) \, $\Big\vert$ \,  \hyperlink{slide:outline}{\insertframenumber\enskip/\enskip\inserttotalframenumber}}  \hspace*{2ex} 
+%%		%\usebeamerfont{date in head/foot} \insertauthor\inserttitle \insertframenumber{} / \inserttotalframenumber \hspace*{2ex}
+%	\end{beamercolorbox}}%
+%	\vskip0pt%
+%}
+\setbeamercolor{background canvas}{bg=lightgray}
+\begin{frame}[c, noframenumbering]{Presentation Outline}
+\label{slide:outline}
+\hfill
+\parbox[t]{.95\textwidth}{
+\begin{minipage}[c][0.75\textheight]{\textwidth}
+	\tableofcontents[hideallsubsections]
+\end{minipage}}
+\hfill
+%\cornerlinks{
+%	\hyperlink{slide:appendix_toc}{\beamergotobutton{Appendix}}
+%}
+\end{frame}
+}
+  	
+
+\AtBeginSection[]
+{
+{
+% \setbeamertemplate{footline}{
+% 	\leavevmode%
+% 	\hbox{%
+% 	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5em,right]{title in head/foot}%
+% 		  \textcolor{gray}{
+% 		  Mert Demirer (MIT Sloan) \, $\Big\vert$ \,\,\quad \hyperlink{slide:outline}{$\bullet$} \,\quad }   \hspace*{2ex} 
+% 	\end{beamercolorbox}}%
+% 	\vskip0pt%
+% }
+\setbeamercolor{background canvas}{bg=lightgray}
+\begin{frame}[c, noframenumbering] 
+\hfill
+\parbox[t]{.95\textwidth}{
+\begin{minipage}[c][0.75\textheight]{\textwidth}
+	\tableofcontents[
+		currentsection, 
+		subsectionstyle=hide/hide/hide,
+		sectionstyle=show/shaded]  			
+\end{minipage}}
+\hfill
+\end{frame}
+}
+}
+
+\AtBeginSubsection[]
+{
+{
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5em,right]{title in head/foot}%
+		  \textcolor{gray}{
+		  \presenter \, $\Big\vert$ \,\,\quad \hyperlink{slide:outline}{$\bullet$} \,\quad }   \hspace*{2ex} 
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\setbeamercolor{background canvas}{bg=lightgray}
+\begin{frame}[c, noframenumbering]{}
+\hfill
+\parbox[t]{.95\textwidth}{
+\begin{minipage}[c][0.75\textheight]{\textwidth}
+	\tableofcontents[
+		currentsection, 
+		subsectionstyle=show/shaded/hide,
+		sectionstyle=show/hide]  			
+\end{minipage}}
+\hfill
+\end{frame}
+}
+}

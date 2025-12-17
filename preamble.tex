@@ -1,0 +1,218 @@
+% !TeX root = 0_main.tex
+
+\usepackage{pgfpages}
+\setbeamertemplate{note page}{\pagecolor{yellow!5}
+%\insertslideintonotes{0.25} \\
+\vspace{2em}
+\insertnote}
+%\setbeameroption{show notes on second screen=right} % Both
+\setbeameroption{hide notes} % Only slide
+%\setbeameroption{show only notes}
+\newcommand{\mathleft}{\@fleqntrue\@mathmargin0pt}
+\newcommand{\mathcenter}{\@fleqnfalse}
+
+
+\usepackage{ulem}
+\renewcommand{\ULdepth}{1.8pt}
+
+% PACKAGES ==============================================
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{type1cm}  % to avoid warnings of smaller font sizes that are not used
+\usepackage{lmodern}  % to avoid warnings of smaller font sizes that are not used
+\usepackage{bbm}
+\usepackage{adjustbox}
+\usepackage{bigstrut}
+\usepackage{soul}
+\usepackage{comment}
+\usepackage{mathtools}
+
+% TIKZ PROGRAMMING ======================================
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usetikzlibrary{shapes,arrows,fit,tikzmark}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{arrows.meta}
+
+
+%% DOCUMENT ENCODING ====================================================================
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+\usepackage[T1]{fontenc}
+
+% BIBLIGRAPHY ===========================================
+\usepackage{csquotes}
+\usepackage[natbib = true, backend = bibtex, style  = authoryear, maxcitenames = 2]{biblatex}
+\addbibresource{references.bib}
+
+% IGNORE WARNINGS =======================================
+\usepackage{silence}
+\WarningFilter{biblatex}{Patching footnotes failed}
+\WarningFilter{biblatex}{Using fall-back BibTeX(8) backend:}
+
+% DEFINE FONT ==============================================
+\usepackage[scaled=.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usefonttheme{professionalfonts}
+\usepackage[upint]{newpxmath}
+
+% DOUBLE SPACING ===========================================
+\usepackage{setspace}
+\setstretch{1.2}
+
+\geometry{
+	paperwidth =\the\paperwidth,
+	paperheight=\the\paperheight}%   vmargin=0cm,%   head=0.5cm, %   headsep=0pt,%   foot=0.5cm % }
+
+% TITLE PAGE =============================================
+\setbeamertemplate{title page}[default]
+\setbeamercolor{title}{fg=beamer@blendedblue,bg=}
+\setbeamercolor{author}{fg=black,bg=}
+\setbeamercolor{institute}{fg=black,bg=white}
+\setbeamercolor{date}{fg=black,bg=}
+%\setbeamerfont*{title}{series=\bfseries\selectfont,size=\LARGE}
+\setbeamerfont*{title}{size=\huge,series=\bfseries\selectfont}
+\setbeamerfont*{institute}{size=\small}
+
+% FRAME TITLE ==============================================
+\setbeamercolor{background canvas}{bg=white} 				% background of slides
+\setbeamercolor{normal text}{fg=black}			         	% color of text
+%\setbeamercolor{frametitle}{bg=white,fg=blue_slides} 		% slide title color
+%\setbeamerfont*{frametitle}{size=\large}
+
+% FRAME MARGINS ============================================
+\setbeamersize{
+	text margin left  = 4ex,
+	text margin right = 4ex}
+
+% APPENDIX ===========
+\usepackage{changepage}
+\usepackage{appendixnumberbeamer}
+\renewcommand\appendixname{Appendix} % otherwise weird warning
+
+% FRAME FOOTLINE ===========================================
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5em,right]{title in head/foot}%
+		\textcolor{gray}{
+		\presenter \, $\Big\vert$ \,  \hyperlink{slide:outline}{\insertframenumber\enskip/\enskip\inserttotalframenumber}}  \hspace*{2ex}
+%		%\usebeamerfont{date in head/foot} \insertauthor\inserttitle \insertframenumber{} / \inserttotalframenumber \hspace*{2ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+
+% ITEMIZE BULLETS ==========================================
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}{$\cdot$}
+\setbeamertemplate{itemize subitem}{-}
+\setbeamercolor{itemize item}{fg=gray}
+\setbeamercolor{itemize subitem}{fg=gray}
+\setbeamercolor{enumerate item}{fg=gray}
+\setbeamercolor{enumerate subitem}{fg=gray}
+\setbeamercolor{button}{bg=white,fg=gray}
+
+\setlength{\leftmargini}{1ex}
+\setlength{\leftmarginii}{2ex}
+\setlength{\leftmarginiii}{1ex}
+
+% TABLE OF CONTENTS ========================================
+\setbeamertemplate{section in toc}{\vspace{2ex}\huge{\alert{\textbf{\textcolor{red}{\inserttocsectionnumber\,\big|\,\inserttocsection}}}}\vspace*{0.25ex}}
+\setbeamertemplate{section in toc shaded}{\enskip\inserttocsection}
+\setbeamertemplate{subsection in toc}{\hspace*{-4ex}\enskip\enskip\Large{\inserttocsectionnumber.\inserttocsubsectionnumber\enskip\inserttocsubsection}\par\vspace*{0.5ex}}
+\setbeamertemplate{subsection in toc shaded}{\hspace*{-4ex}\enskip\enskip\large{\inserttocsectionnumber.\inserttocsubsectionnumber}\enskip\inserttocsubsection\par}
+\setbeamercolor{section in toc shaded}{fg=lightgrey}
+\setbeamercolor{subsection in toc shaded}{fg=lightgrey}
+
+% COLORS ===================================================
+\definecolor{beamer@blendedblue}{RGB}{25,70,114}
+\definecolor{red}{RGB}{209,15,47}
+\definecolor{lightgray}{HTML}{F5F5F5}
+\definecolor{lightgrey}{RGB}{218,218,218}
+\definecolor{red_slides}{RGB}{187,12,27}
+\definecolor{blugreen}{RGB}{0,158,115}
+\definecolor{orange}{RGB}{219,107,0}
+\definecolor{red_tol}{HTML}{D92120}
+\definecolor{blue_tol}{RGB}{0,119,187}
+\definecolor{ash}{RGB}{100,100,100}
+\definecolor{lightash}{RGB}{140,140,140}
+\definecolor{magenta}{RGB}{238,51,119}
+\definecolor{cyan}{RGB}{51,187,238}
+\definecolor{green_tol}{RGB}{27,120,55}
+\definecolor{purple_tol}{RGB}{118,42,131}
+\definecolor{orange_tol}{RGB}{232,96,28}
+
+% ALERT COLOR =============================================
+\setbeamercolor{alerted text}{fg=red}
+
+% USER WRITTEN COMMAND ABBREVIATIONS ======================
+\newcommand{\alertbf}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\redsmallbold}[1]{{\small\textcolor{red}{\textbf{\colorbox{white}{#1}}}}}
+\newcommand{\citebib}[1]{{\scriptsize\textcolor{gray}{#1}}}
+\newcommand{\cornerlinks}[1]{
+	\begin{tikzpicture}[remember picture, overlay]
+	\node[yshift=0.45ex,anchor=south west]() at (current page.south west){%
+		#1 %
+	};
+	\end{tikzpicture}
+}
+\newcommand{\cornerinfo}[1]{
+	\begin{tikzpicture}[remember picture, overlay]
+	\node[yshift=0.35ex,anchor=south west]() at (current page.south west){%
+		\textcolor{gray}{\tiny{#1}} %
+	};
+	\end{tikzpicture}
+}
+\newcommand{\returnbutton}[1]{%
+	\begin{tikzpicture}[remember picture, overlay]
+	\node[shift={(-2em,-1.5em)}]() at (current page.north east){%
+	\hyperlink{#1}{\beamerreturnbutton{Back}}};
+	\end{tikzpicture}%
+}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+% MODIFIED FOR ROWCOLOR TO WORK WITH TRANSITIONS
+\makeatletter
+\def\rowcolor{\noalign{\ifnum0=`}\fi\bmr@rowcolor}
+\newcommand<>{\bmr@rowcolor}{%
+    \alt#1%
+        {\global\let\CT@do@color\CT@@do@color\@ifnextchar[\CT@rowa\CT@rowb}% 
+        {\ifnum0=`{\fi}\@gooble@rowcolor}% 
+}
+
+\newcommand{\@gooble@rowcolor}[2][]{\@gooble@rowcolor@}
+\newcommand{\@gooble@rowcolor@}[1][]{\@gooble@rowcolor@@}
+\newcommand{\@gooble@rowcolor@@}[1][]{\ignorespaces}
+\makeatother
+
+% PACKAGES TO LOAD LAST ====================================
+\usepackage{bm}
+\usepackage{pgfplots}
+\pgfplotsset{compat = newest}
+\usetikzlibrary{positioning}
+\usepgfplotslibrary{fillbetween}
+\usepackage{amsmath}
+
+
+\usepackage{contour}
+\usepackage{ulem}
+
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+
+\newcommand{\myuline}[1]{%
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+\usepackage[labelfont=bf,justification=centering]{caption}
+\usepackage[labelfont=bf, justification=justified, labelformat=simple]{subcaption}
+\captionsetup{position=top}
+\captionsetup[subfigure]{justification=centering}
+\renewcommand\thesubfigure{(\alph{subfigure})}

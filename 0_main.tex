@@ -1,0 +1,82 @@
+% !TeX root = 0_main.tex
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+% !TEX output_directory = .textmp
+
+
+\documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
+
+% CHANGE HERE FOR FOOTNOTES IN SLIDES-REMOVE TO KEEP BLANK IN SLIDES
+\newcommand{\presenter}{Presenter} 
+
+\input{preamble.tex}
+
+
+\usepackage{xkeyval}
+\usepackage{todonotes}
+\presetkeys{todonotes}{inline}{}
+
+
+\title{
+Paper Title: \\ 
+Paper Subtitle
+}
+\subtitle{ }
+\author{%
+	Author One\inst{1} \and
+	Author Two\inst{2}}
+\institute{
+	\inst{1} Institution One\\
+ 	\inst{2} Institution Two}
+\date{Date}
+
+
+
+\begin{document}
+
+{
+\setbeamertemplate{footline}{}
+\begin{frame}[noframenumbering]
+\maketitle
+\vspace{1ex}
+\centering
+\tiny{$^*$The views expressed herein are those of the authors and do not necessarily reflect the views of Employer.}
+\end{frame}
+}
+
+%% INTRODUCTION ================================================
+\section{Introduction}
+\input{1_introduction.tex}
+
+%% TABLE OF CONTENTS ===========================================
+\input{table_of_contents}
+
+%%  TEMPLATE FEATURES =============================================
+\section{Examples of template features}
+
+\input{2_example_math.tex}
+
+\input{3_vfill_vspace.tex}
+
+\input{4_tables.tex}
+
+\input{5_links.tex}
+
+\input{6_figures.tex}
+
+
+%%% APPENDIX ====================================================
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5em,right]{title in head/foot}%
+		  \textcolor{gray}{
+		  \presenter \, $\Big\vert$ \,\,\quad \hyperlink{slide:outline}{$\bullet$} \,\quad }   \hspace*{2ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+
+\input{7_appendix}
+
+
+\end{document}

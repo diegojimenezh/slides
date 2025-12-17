@@ -1,0 +1,128 @@
+# LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# LaTeX intermediate files
+*.dvi
+*.xdv
+*-converted-to.*
+
+# Bibliography auxiliary files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Build tool auxiliary files
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# LaTeX build directories
+.textmp/
+*.textmp/
+
+# Beamer specific
+*.snm
+*.nav
+*.vrb
+
+# Nomenclature
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+*.slg
+*.slo
+*.sls
+
+# Glossaries
+*.ist
+
+# Hyperref
+*.xdy
+
+# Knitr
+*-concordance.tex
+
+# Python (if using pythontex)
+*.pytxcode
+pythontex-files-*/
+
+# SAGE
+*.sage.py
+
+# Asymptote
+*.asy
+*-[0-9].eps
+*-[0-9].pdf
+
+# TikZ & PGF
+*.dpth
+*.md5
+*.auxlock
+
+# Gnuplot
+*.gnuplot
+*.table
+
+# Other
+*.bak
+*.backup
+*~
+*.swp
+*.swo
+*~
+
+# Output PDF (comment out if you want to track the compiled PDF)
+*.pdf
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
