@@ -4,17 +4,13 @@
 \vspace{1em}
 \begin{minipage}{0.49\textwidth}
 \centering
-\includegraphics<1-3,6>[width=\textwidth]{example-image-a}%
-\includegraphics<4>[width=\textwidth]{example-image-b}%
-\includegraphics<5>[width=\textwidth]{example-image-c}%
+\includegraphics[width=\textwidth]{example-image-golden}%
 \end{minipage}
 \hfill
 \only<2->{
 \begin{minipage}{0.49\textwidth}
 \centering
-\includegraphics<1-3>[width=\textwidth]{example-image-a}%
-\includegraphics<4>[width=\textwidth]{example-image-b}%
-\includegraphics<5-6>[width=\textwidth]{example-image-c}%
+\includegraphics[width=\textwidth]{example-image-golden}%
 \end{minipage}
 }
 \vspace{0.5em}
@@ -33,17 +29,17 @@
     %            \node at (\x,\y) {\tiny \x,\y};
 
     % SELECTING RECTANGLES __________________
-    \only<4>{\draw [->,red,thick] (1,.9) -- (-1,1)};
-    \only<4>{\draw [->,red,thick] (1.8,1) -- (2.45,2)};
-    \only<5>{\draw [->,red,thick] (-1,2.2) -- (-2.3,1.2)};
-    \only<5>{\draw [->,red,thick] (-1,2.2) -- (3,0.9)};
-    \only<6>{\draw [->,red,thick] (6.5,2) -- (6.1,1.2)};
+    \only<4>{\draw [->,red,thick] (0,-1.6) -- (-3.5,0.5)};
+    \only<4>{\draw [->,red,thick] (0,-1.6) -- (3.5,0.5)};
+    \only<5>{\draw [->,red,thick] (-1,2.9) -- (-3.5,1.5)};
+    \only<5>{\draw [->,red,thick] (-1,2.9) -- (3,0.9)};
+    \only<6>{\draw [->,red,thick] (6.5,2) -- (5,1.2)};
 
-    \only<4>{\node [align=center] at (2,.5) {\textcolor{red}{\textbf{Arrows can point to}} \\[-0.8ex] \textcolor{red}{\textbf{both images}}}};
+    \only<4>{\node [align=center] at (0,-2.2) {\textcolor{red}{\textbf{Arrows can point to}} \\[-0.8ex] \textcolor{red}{\textbf{both images}}}};
 
-    \only<5>{\node [align=center] at (-1,2.9) {\textcolor{red}{\textbf{Text can be at  a}} \\[-0.8ex] \textcolor{red}{\textbf{different height}} }};
+    \only<5>{\node [align=center] at (-1,3.5) {\textcolor{red}{\textbf{Text can be at a}} \\[-0.8ex] \textcolor{red}{\textbf{different height}}}};
 
-    \only<6>{\node [align=center] at (6,2.5) {\textcolor{red}{\textbf{Or text can point to}} \\[-0.8ex] \textcolor{red}{\textbf{one image}} }};
+    \only<6>{\node [align=center] at (6,2.5) {\textcolor{red}{\textbf{Or text can point to}} \\[-0.8ex] \textcolor{red}{\textbf{one image}}}};
 
 
 \end{tikzpicture}
