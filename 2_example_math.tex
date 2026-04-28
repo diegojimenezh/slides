@@ -2,19 +2,21 @@
 
 \subsection{Including math}
 
-\begin{frame}{Examples of display-style and inline math}
+\begin{frame}{Examples of display-style and aligned equations}
 
 \begin{itemize}
-
 \item \textbf{Display-style math:} To illustrate display-style math, consider the Wald estimator:
 \[
 \tau^{IV} = \frac{\mathbb{E}[Y_i | Z_i = 1] - \mathbb{E}[Y_i | Z_i = 0]}{\mathbb{E}[D_i | Z_i = 1] - \mathbb{E}[D_i | Z_i = 0]}
 \]
 
-\vfill 
+\vfill
 
-\item \textbf{Inline math:} For example, a simple linear regression model can be written inline as $Y = X' \beta + \varepsilon$. 
-
+\item \textbf{Aligned equations:} The variance decomposition:
+\begin{align*}
+\mathbb{V}(Y) &= \mathbb{E}\big( Y^2  \big) -  \mathbb{E}\big( Y \big)^2 \\
+&= \underbracket[0.4pt]{\mathbb{E}\big[\mathbb{V}(Y \mid X)\big]}_{\substack{\text{within-group} \\ \text{variance}}} + \underbracket[0.4pt]{\mathbb{V}\big[\mathbb{E}(Y \mid X)\big]}_{\substack{\text{between-group} \\ \text{variance}}}
+\end{align*}
 \end{itemize}
 
 \end{frame}

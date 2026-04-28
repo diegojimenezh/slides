@@ -52,9 +52,10 @@
 \WarningFilter{biblatex}{Using fall-back BibTeX(8) backend:}
 
 % DEFINE FONT ==============================================
-\usepackage[scaled=.95]{helvet}
+\usepackage[scaled=.93]{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usefonttheme{professionalfonts}
+\usepackage[lining]{ebgaramond}
 \usepackage[upint]{newpxmath}
 
 % DOUBLE SPACING ===========================================
@@ -72,7 +73,7 @@
 \setbeamercolor{institute}{fg=black,bg=white}
 \setbeamercolor{date}{fg=black,bg=}
 %\setbeamerfont*{title}{series=\bfseries\selectfont,size=\LARGE}
-\setbeamerfont*{title}{size=\huge,series=\bfseries\selectfont}
+\setbeamerfont*{title}{size=\huge, series=\bfseries\selectfont, family=\fontfamily{EBGaramond-TLF}\selectfont}
 \setbeamerfont*{institute}{size=\small}
 
 % FRAME TITLE ==============================================
@@ -80,6 +81,7 @@
 \setbeamercolor{normal text}{fg=black}			         	% color of text
 %\setbeamercolor{frametitle}{bg=white,fg=blue_slides} 		% slide title color
 %\setbeamerfont*{frametitle}{size=\large}
+\setbeamerfont{frametitle}{family=\fontfamily{EBGaramond-TLF}\selectfont, series=\bfseries, size=\LARGE}
 
 % FRAME MARGINS ============================================
 \setbeamersize{

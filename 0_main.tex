@@ -36,6 +36,7 @@ Paper Subtitle
 
 {
 \setbeamertemplate{footline}{}
+\setlength{\leftmargini}{0pt}
 \begin{frame}[noframenumbering]
 \maketitle
 \vspace{1ex}
@@ -66,6 +67,17 @@ Paper Subtitle
 
 
 %%% APPENDIX ====================================================
+\appendix
+{
+\setbeamertemplate{footline}{}
+\setlength{\leftmargini}{0pt}
+\setbeamercolor{background canvas}{bg=black}
+\begin{frame}[noframenumbering, c]
+\centering
+\textcolor{white}{\fontfamily{EBGaramond-TLF}\selectfont\Huge\textbf{Appendix}}
+\end{frame}
+}
+
 \setbeamertemplate{footline}{
 	\leavevmode%
 	\hbox{%
@@ -75,6 +87,8 @@ Paper Subtitle
 	\end{beamercolorbox}}%
 	\vskip0pt%
 }
+
+
 
 \input{7_appendix}
 
