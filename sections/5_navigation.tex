@@ -1,0 +1,31 @@
+% !TeX root = ../slides.tex
+
+\subsection{Navigation}
+
+\begin{frame}{Three Useful Tools for Navigating the Slides}
+\label{slide:cornerlinks}
+
+% ADD TO THE TOP OF THE SLIDE TO AVOID PAUSES MESSING WITH THEM
+\cornerlinks{
+	\hyperlink{fig:example}{\beamergotobutton{example figure}}
+	\hyperlink{tab:example}{\beamergotobutton{example table}}
+}
+\begin{enumerate}
+\item \texttt{\textbackslash cornerlinks} adds buttons in the bottom-left corner that jump to other slides.
+\begin{itemize}
+\item Below are an example figure and table in the Appendix while keeping focus on main content.
+\item Can be used to have a long list of robustness checks and/or additional results.
+\end{itemize} \vspace{1em}
+\item \texttt{\textbackslash returnbutton} adds a ``Back'' button in the top-right corner.
+\begin{itemize}
+\item The example in the Appendix uses this button to return to the main content.
+\end{itemize} \vspace{1em}
+\item Click the slide number in the bottom-right corner to jump to the table of contents.
+\begin{itemize}
+\item Automatically generated in any slide; can then be used to quickly navigate over the slide deck.
+\end{itemize}
+\end{enumerate}
+
+
+
+\end{frame}

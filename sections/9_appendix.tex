@@ -1,0 +1,73 @@
+% !TeX root = ../slides.tex
+
+\begin{frame}{Example Image}
+
+\begin{figure}
+\includegraphics[width=.5 \textwidth]{example-image-golden}
+\label{fig:example}
+\end{figure}
+\returnbutton{slide:cornerlinks}
+\end{frame}
+
+\begin{frame}{Example Table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lC{2.5cm}C{2.5cm}C{2.5cm}}
+\toprule
+ & Outcome 1 & Outcome 2 & Outcome 3 \\
+\midrule
+Treatment & 0.125 & $-$0.034 & 0.278 \\
+ & (0.042) & (0.051) & (0.063) \\
+\addlinespace
+Control mean & 1.530 & 2.410 & 0.890 \\
+Observations & 10,000 & 10,000 & 10,000 \\
+\bottomrule
+\end{tabular}
+\label{tab:example}
+\end{table}
+\returnbutton{slide:cornerlinks}
+\end{frame}
+% Prints a color's hex code, read from its \definecolor.
+\newcommand{\hexof}[1]{%
+	\extractcolorspecs{#1}{\hexmodel}{\hexspec}%
+	\convertcolorspec{\hexmodel}{\hexspec}{HTML}{\hexval}%
+	\#\hexval}
+
+\begin{frame}[t]{Palette Reference}
+\vspace{0.5em}
+\begin{center}
+\begin{tikzpicture}[
+	swatch/.style = {rectangle, minimum width = 1.55cm, minimum height = 0.7cm,
+	                 draw = rule, line width = 0.4pt},
+	lbl/.style    = {font = \scriptsize, text = inkmuted, align = center, anchor = north, inner sep = 1pt},
+	]
+	% -- Semantic roles ------------------------------------------------
+	\node[lbl, anchor = west, text = ink, font = \small\bfseries]
+		at (-0.78,1.35) {Semantic};
+	\foreach [count=\i from 0] \c/\n in {%
+		ink/ink, inkmuted/inkmuted, inkfaint/inkfaint, dimmed/dimmed,
+		accent/accent, accentalt/accentalt, highlight/highlight}
+	{
+		\node[swatch, fill = \c] (s\i) at (\i*1.65, 0.65) {};
+		\node[lbl] at (\i*1.65, 0.25) {\texttt{\n}\\\hexof{\c}};
+	}
+	% -- Categorical series --------------------------------------------
+	\node[lbl, anchor = west, text = ink, font = \small\bfseries]
+		at (-0.78,-0.75) {Series};
+	\foreach [count=\i from 0] \c in {series1,series2,series3,series4,series5,series6}
+	{
+		\node[swatch, fill = \c] at (\i*1.65, -1.45) {};
+		\node[lbl] at (\i*1.65, -1.85) {\texttt{\c}\\\hexof{\c}};
+	}
+	% -- Matched fill tints --------------------------------------------
+	\node[lbl, anchor = west, text = ink, font = \small\bfseries]
+		at (-0.78,-2.85) {Fills};
+	\foreach [count=\i from 0] \c in {fill1,fill2,fill3,fill4,fill5,fill6}
+	{
+		\node[swatch, fill = \c] at (\i*1.65, -3.55) {};
+		\node[lbl] at (\i*1.65, -3.95) {\texttt{\c}\\\hexof{\c}};
+	}
+\end{tikzpicture}
+\end{center}
+\end{frame}

@@ -96,6 +96,8 @@ pythontex-files-*/
 
 # Output PDF (comment out if you want to track the compiled PDF)
 *.pdf
+# ... but figures are inputs, not output
+!figures/*.pdf
 
 # macOS
 .DS_Store

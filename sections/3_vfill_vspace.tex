@@ -1,0 +1,69 @@
+% !TeX root = ../slides.tex
+
+\subsection{vfill and vspace Commands}
+
+\begin{frame}{A List without \texttt{vspace} or \texttt{vfill}}
+
+Consider the following list:
+
+\begin{itemize}
+
+\item Item one
+
+\item Item two 
+
+\item Item three 
+
+\item Item four
+\end{itemize} 
+
+... without using any commands to space out the items on the list, text is cramped together.
+
+\end{frame}
+
+\begin{frame}{A List with \texttt{vspace}}
+
+Use \texttt{vspace} to manually introduce space between items, or this top line of text and the list.
+
+\vspace{1em}
+
+\begin{itemize}
+
+\item Sometimes you want to add a little space for readability.
+
+\vspace{3em} \pause
+
+\item Other times you want a lot of space for punchiness.
+
+\vspace{3em} \pause
+
+\item With \texttt{vspace} you can control the space down to the exact amount you want.
+
+\vspace{1em}
+\end{itemize} 
+
+\end{frame}
+
+\begin{frame}{A List with \texttt{vfill}}
+
+The command vfill provides another option for spacing out text on a slide. Instead of manually controlling the amount of vertical space, this command stretches out items in order to fill the slide.  For example, placing vfill between this top line of text and the list produces:
+
+\vfill
+\begin{itemize}
+
+\item Item one
+
+\item Item two 
+
+\item Item three 
+
+\item Item four
+
+\end{itemize} 
+
+
+\end{frame}
+
+
+
+

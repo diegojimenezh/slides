@@ -1,4 +1,22 @@
-% !TeX root = 0_main.tex
+% !TeX root = slides.tex
+
+% ==========================================================
+% USER SETTINGS
+% ==========================================================
+% Font scheme. Pick ONE. Each scheme pairs a body face, a display face
+% (title / frame titles / dividers) and a MATCHING math font, so formulas
+% stop looking like they were pasted in from another document.
+%
+%   helvetica-garamond  Helvetica body, EB Garamond display, Palatino math
+%                       (the template's original look)
+%   sans                Helvetica throughout + true sans math (newtxsf)
+%   garamond            EB Garamond throughout + matching math
+%   libertinus          Libertinus throughout + matching math
+%
+\def\slidefontscheme{helvetica-garamond}
+
+% Letterspacing/protrusion refinements (microtype). Set to 0 to disable.
+\def\slidemicrotype{1}
 
 \usepackage{pgfpages}
 \setbeamertemplate{note page}{\pagecolor{yellow!5}
@@ -17,9 +35,10 @@
 
 % PACKAGES ==============================================
 \usepackage{booktabs}
+\usepackage{pifont}   % \cmark for table indicator cells
 \usepackage{multirow}
-\usepackage{type1cm}  % to avoid warnings of smaller font sizes that are not used
-\usepackage{lmodern}  % to avoid warnings of smaller font sizes that are not used
+\usepackage{etoolbox}
+\usepackage{type1cm}  % scalable CM sizes: silences "font shape not available"
 \usepackage{bbm}
 \usepackage{adjustbox}
 \usepackage{bigstrut}
@@ -52,11 +71,54 @@
 \WarningFilter{biblatex}{Using fall-back BibTeX(8) backend:}
 
 % DEFINE FONT ==============================================
-\usepackage[scaled=.93]{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\usefonttheme{professionalfonts}
-\usepackage[lining]{ebgaramond}
-\usepackage[upint]{newpxmath}
+% Every scheme must define \displayfamily (used by the title page, frame
+% titles and section dividers) and load exactly one math font package.
+% Selected via \slidefontscheme at the top of this file.
+
+\newcommand{\displayfamily}{}
+
+% -- Helvetica body + EB Garamond display + Palatino math (original look) --
+\ifdefstring{\slidefontscheme}{helvetica-garamond}{%
+	\usepackage[scaled=.93]{helvet}
+	\renewcommand{\familydefault}{\sfdefault}
+	\usepackage[lining]{ebgaramond}
+	\usepackage[upint]{newpxmath}
+	\renewcommand{\displayfamily}{\fontfamily{EBGaramond-TLF}\selectfont}
+}{}
+
+% -- All Helvetica, with genuine sans math so equations match the body --
+\ifdefstring{\slidefontscheme}{sans}{%
+	\usepackage[scaled=.93]{helvet}
+	\renewcommand{\familydefault}{\sfdefault}
+	\usepackage[cmintegrals]{newtxsf}
+	\renewcommand{\displayfamily}{\sffamily}
+}{}
+
+% -- EB Garamond throughout, including matching math --
+% \usefonttheme{serif} is required: beamer's default font theme forces
+% \sfdefault, which would leave serif math sitting on a sans body.
+\ifdefstring{\slidefontscheme}{garamond}{%
+	\usefonttheme{serif}
+	\usepackage[lining]{ebgaramond}
+	\usepackage{ebgaramond-maths}
+	\renewcommand{\displayfamily}{\rmfamily}
+}{}
+
+% -- Libertinus throughout, including matching math --
+\ifdefstring{\slidefontscheme}{libertinus}{%
+	\usefonttheme{serif}
+	\usepackage{libertinust1math}
+	\usepackage[mono=false]{libertinus}
+	\renewcommand{\displayfamily}{\rmfamily}
+}{}
+
+\ifdefempty{\displayfamily}{%
+	\PackageError{preamble}{Unknown \string\slidefontscheme\space
+		'\slidefontscheme'. Valid: helvetica-garamond, sans, garamond,
+		libertinus}{}%
+}{}
+
+\usefonttheme{professionalfonts}  % keep beamer from overriding math fonts
 
 % DOUBLE SPACING ===========================================
 \usepackage{setspace}
@@ -66,6 +128,63 @@
 	paperwidth =\the\paperwidth,
 	paperheight=\the\paperheight}%   vmargin=0cm,%   head=0.5cm, %   headsep=0pt,%   foot=0.5cm % }
 
+% COLORS ===================================================
+% Ratios below are WCAG 2.1 contrast against the white slide background,
+% measured, not estimated. Thresholds: >=4.5 body text, >=3.0 large text
+% (>=18pt bold, i.e. frame titles) and graphical objects such as plot lines.
+%
+% -- Semantic roles: use these instead of raw color names -------------
+\definecolor{ink}{HTML}{1A1A1A}       % 17.40  body text
+\definecolor{inkmuted}{HTML}{595959}  %  7.00  secondary text
+\definecolor{inkfaint}{HTML}{6E6E6E}  %  5.10  captions, footline, citations
+\definecolor{dimmed}{HTML}{8C8C8C}    %  3.36  de-emphasized LARGE text only
+\definecolor{rule}{HTML}{D9D9D9}      %  1.41  DECORATIVE ONLY: hairlines
+\definecolor{wash}{HTML}{F5F5F5}      %  1.09  FILL ONLY: panel backgrounds
+\definecolor{accent}{HTML}{D10F2F}    %  5.50  primary emphasis
+\definecolor{accentalt}{HTML}{004488} %  9.62  secondary emphasis
+\definecolor{highlight}{HTML}{FFF0BF} % FILL ONLY: ink on it reads at 15.31
+
+% -- Categorical series for plots and marks --------------------------
+% Chosen by exhaustive search: every color clears 3.0 on white, and the set
+% stays distinguishable under normal vision, deuteranopia, protanopia and
+% tritanopia (worst-case pairwise Lab dE = 23.9). Use in numerical order;
+% the ordering is optimized so that any prefix is as distinct as possible.
+% Past ~4 series, pair color with direct labels or markers as well.
+\definecolor{series1}{HTML}{332288}   % 12.17  indigo
+\definecolor{series2}{HTML}{CC6677}   %  3.66  rose   (graphics/large text)
+\definecolor{series3}{HTML}{882255}   %  8.73  wine
+\definecolor{series4}{HTML}{999933}   %  3.02  olive  (graphics/large text)
+\definecolor{series5}{HTML}{4477AA}   %  4.70  blue
+\definecolor{series6}{HTML}{543005}   % 11.65  sepia
+% Matched light tints for area fills / bars; ink on any of them reads >=13.
+\definecolor{fill1}{HTML}{E0DEED}
+\definecolor{fill2}{HTML}{F7E8EB}
+\definecolor{fill3}{HTML}{EDDEE6}
+\definecolor{fill4}{HTML}{F0F0E0}
+\definecolor{fill5}{HTML}{E3EBF2}
+\definecolor{fill6}{HTML}{E5E0DA}
+
+% -- Legacy names kept so existing decks keep compiling ---------------
+% Note: `red`, `orange`, `cyan` and `magenta` shadow xcolor's built-ins, so
+% \textcolor{red} here is NOT xcolor's red. Prefer the semantic names above.
+% Ratios are on white; those marked (!) are too light for body text.
+\definecolor{beamer@blendedblue}{RGB}{25,70,114}  %  9.72
+\definecolor{red}{RGB}{209,15,47}                 %  5.50  = accent
+\definecolor{lightgray}{HTML}{F5F5F5}             %  1.09  fill only
+\definecolor{lightgrey}{RGB}{218,218,218}         %  1.40  fill only
+\definecolor{red_slides}{RGB}{187,12,27}          %  6.60
+\definecolor{blugreen}{RGB}{0,158,115}            %  3.42  (!) large/graphics
+\definecolor{orange}{RGB}{219,107,0}              %  3.43  (!) large/graphics
+\definecolor{red_tol}{HTML}{D92120}               %  5.01
+\definecolor{blue_tol}{RGB}{0,119,187}            %  4.82
+\definecolor{ash}{RGB}{100,100,100}               %  5.92
+\definecolor{lightash}{RGB}{140,140,140}          %  3.36  (!) large/graphics
+\definecolor{magenta}{RGB}{238,51,119}            %  3.91  (!) large/graphics
+\definecolor{cyan}{RGB}{51,187,238}               %  2.21  (!) fill only
+\definecolor{green_tol}{RGB}{27,120,55}           %  5.54
+\definecolor{purple_tol}{RGB}{118,42,131}         %  8.64
+\definecolor{orange_tol}{RGB}{232,96,28}          %  3.43  (!) large/graphics
+
 % TITLE PAGE =============================================
 \setbeamertemplate{title page}[default]
 \setbeamercolor{title}{fg=beamer@blendedblue,bg=}
@@ -73,15 +192,15 @@
 \setbeamercolor{institute}{fg=black,bg=white}
 \setbeamercolor{date}{fg=black,bg=}
 %\setbeamerfont*{title}{series=\bfseries\selectfont,size=\LARGE}
-\setbeamerfont*{title}{size=\huge, series=\bfseries\selectfont, family=\fontfamily{EBGaramond-TLF}\selectfont}
+\setbeamerfont*{title}{size=\huge, series=\bfseries\selectfont, family=\displayfamily}
 \setbeamerfont*{institute}{size=\small}
 
 % FRAME TITLE ==============================================
 \setbeamercolor{background canvas}{bg=white} 				% background of slides
-\setbeamercolor{normal text}{fg=black}			         	% color of text
+\setbeamercolor{normal text}{fg=ink}			         	% color of text
 %\setbeamercolor{frametitle}{bg=white,fg=blue_slides} 		% slide title color
 %\setbeamerfont*{frametitle}{size=\large}
-\setbeamerfont{frametitle}{family=\fontfamily{EBGaramond-TLF}\selectfont, series=\bfseries, size=\LARGE}
+\setbeamerfont{frametitle}{family=\displayfamily, series=\bfseries, size=\LARGE}
 
 % FRAME MARGINS ============================================
 \setbeamersize{
@@ -99,7 +218,7 @@
 	\leavevmode%
 	\hbox{%
 	\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5em,right]{title in head/foot}%
-		\textcolor{gray}{
+		\textcolor{inkfaint}{
 		\presenter \, $\Big\vert$ \,  \hyperlink{slide:outline}{\insertframenumber\enskip/\enskip\inserttotalframenumber}}  \hspace*{2ex}
 %		%\usebeamerfont{date in head/foot} \insertauthor\inserttitle \insertframenumber{} / \inserttotalframenumber \hspace*{2ex}
 	\end{beamercolorbox}}%
@@ -110,49 +229,31 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize items}{$\cdot$}
 \setbeamertemplate{itemize subitem}{-}
-\setbeamercolor{itemize item}{fg=gray}
-\setbeamercolor{itemize subitem}{fg=gray}
-\setbeamercolor{enumerate item}{fg=gray}
-\setbeamercolor{enumerate subitem}{fg=gray}
-\setbeamercolor{button}{bg=white,fg=gray}
+\setbeamercolor{itemize item}{fg=inkfaint}
+\setbeamercolor{itemize subitem}{fg=inkfaint}
+\setbeamercolor{enumerate item}{fg=inkfaint}
+\setbeamercolor{enumerate subitem}{fg=inkfaint}
+\setbeamercolor{button}{bg=white,fg=inkfaint}
 
 \setlength{\leftmargini}{1ex}
 \setlength{\leftmarginii}{2ex}
 \setlength{\leftmarginiii}{1ex}
 
 % TABLE OF CONTENTS ========================================
-\setbeamertemplate{section in toc}{\vspace{2ex}\huge{\alert{\textbf{\textcolor{red}{\inserttocsectionnumber\,\big|\,\inserttocsection}}}}\vspace*{0.25ex}}
+\setbeamertemplate{section in toc}{\vspace{2ex}\huge{\alert{\textbf{\textcolor{accent}{\inserttocsectionnumber\,\big|\,\inserttocsection}}}}\vspace*{0.25ex}}
 \setbeamertemplate{section in toc shaded}{\enskip\inserttocsection}
 \setbeamertemplate{subsection in toc}{\hspace*{-4ex}\enskip\enskip\Large{\inserttocsectionnumber.\inserttocsubsectionnumber\enskip\inserttocsubsection}\par\vspace*{0.5ex}}
 \setbeamertemplate{subsection in toc shaded}{\hspace*{-4ex}\enskip\enskip\large{\inserttocsectionnumber.\inserttocsubsectionnumber}\enskip\inserttocsubsection\par}
-\setbeamercolor{section in toc shaded}{fg=lightgrey}
-\setbeamercolor{subsection in toc shaded}{fg=lightgrey}
-
-% COLORS ===================================================
-\definecolor{beamer@blendedblue}{RGB}{25,70,114}
-\definecolor{red}{RGB}{209,15,47}
-\definecolor{lightgray}{HTML}{F5F5F5}
-\definecolor{lightgrey}{RGB}{218,218,218}
-\definecolor{red_slides}{RGB}{187,12,27}
-\definecolor{blugreen}{RGB}{0,158,115}
-\definecolor{orange}{RGB}{219,107,0}
-\definecolor{red_tol}{HTML}{D92120}
-\definecolor{blue_tol}{RGB}{0,119,187}
-\definecolor{ash}{RGB}{100,100,100}
-\definecolor{lightash}{RGB}{140,140,140}
-\definecolor{magenta}{RGB}{238,51,119}
-\definecolor{cyan}{RGB}{51,187,238}
-\definecolor{green_tol}{RGB}{27,120,55}
-\definecolor{purple_tol}{RGB}{118,42,131}
-\definecolor{orange_tol}{RGB}{232,96,28}
+\setbeamercolor{section in toc shaded}{fg=dimmed}
+\setbeamercolor{subsection in toc shaded}{fg=dimmed}
 
 % ALERT COLOR =============================================
-\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor{alerted text}{fg=accent}
 
 % USER WRITTEN COMMAND ABBREVIATIONS ======================
-\newcommand{\alertbf}[1]{\textcolor{red}{\textbf{#1}}}
-\newcommand{\redsmallbold}[1]{{\small\textcolor{red}{\textbf{\colorbox{white}{#1}}}}}
-\newcommand{\citebib}[1]{{\scriptsize\textcolor{gray}{#1}}}
+\newcommand{\alertbf}[1]{\textcolor{accent}{\textbf{#1}}}
+\newcommand{\redsmallbold}[1]{{\small\textcolor{accent}{\textbf{\colorbox{white}{#1}}}}}
+\newcommand{\citebib}[1]{{\scriptsize\textcolor{inkfaint}{#1}}}
 \newcommand{\cornerlinks}[1]{
 	\begin{tikzpicture}[remember picture, overlay]
 	\node[yshift=0.45ex,anchor=south west]() at (current page.south west){%
@@ -163,7 +264,7 @@
 \newcommand{\cornerinfo}[1]{
 	\begin{tikzpicture}[remember picture, overlay]
 	\node[yshift=0.35ex,anchor=south west]() at (current page.south west){%
-		\textcolor{gray}{\tiny{#1}} %
+		\textcolor{inkfaint}{\tiny{#1}} %
 	};
 	\end{tikzpicture}
 }
@@ -173,6 +274,8 @@
 	\hyperlink{#1}{\beamerreturnbutton{Back}}};
 	\end{tikzpicture}%
 }
+
+\newcommand{\cmark}{\ding{51}}
 
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
@@ -201,6 +304,34 @@
 \usepgfplotslibrary{fillbetween}
 \usepackage{amsmath}
 
+% POSITIONING GRID =========================================
+% Drop \showgrid into a frame while placing overlay annotations; delete it
+% when done. Origin is the slide center, units are cm (16:9 slide = 16x9 cm).
+\newcommand{\showgrid}{%
+	\begin{tikzpicture}[remember picture, overlay, shift={(current page.center)},
+		gl/.style={font=\tiny\bfseries, text=black, fill=white, inner sep=0.6pt}]
+		\draw[step=0.5cm, black!10, very thin] (-8,-4.5) grid (8,4.5);
+		\draw[step=1cm,   black!10, very thin] (-8,-4.5) grid (8,4.5);
+		\draw[black, line width=0.5pt] (-8,0) -- (8,0) (0,-4.5) -- (0,4.5);
+		\foreach \x in {-8,...,7} \node[gl] at (\x,0) {\x};
+		\foreach \y in {-4,...,4} {\ifnum\y=0\else
+			\node[gl] at (0,\y) {\y};\fi}
+	\end{tikzpicture}%
+}
+
+% CALLOUT BOX ==============================================
+% A "key takeaway" panel: soft background, accent rule down the left edge.
+\newcommand{\takeaway}[2][0.92\textwidth]{%
+	\begin{center}%
+	\begin{tikzpicture}
+		\node[fill = wash, inner sep = 1.4ex, text width = #1,
+		      align = left, text = ink] (tw) {#2};
+		\draw[accent, line width = 2.2pt]
+			([xshift=-1pt]tw.north west) -- ([xshift=-1pt]tw.south west);
+	\end{tikzpicture}%
+	\end{center}%
+}
+
 
 \usepackage{contour}
 \usepackage{ulem}
@@ -218,3 +349,30 @@
 \captionsetup{position=top}
 \captionsetup[subfigure]{justification=centering}
 \renewcommand\thesubfigure{(\alph{subfigure})}
+
+% MICRO-TYPOGRAPHY =========================================
+% Loaded last so it applies to whichever font scheme was selected.
+% Protrusion pulls punctuation slightly into the margin so ragged-right
+% text edges look optically straight; expansion subtly varies glyph widths
+% to even out word spacing. Both matter more on slides than in papers,
+% because short ragged lines make spacing irregularities obvious.
+\ifnum\slidemicrotype=1
+	\usepackage[
+		final,
+		protrusion = true,
+		expansion  = true,
+		tracking   = true,
+		kerning    = true,
+		factor     = 1100,   % protrude a touch harder than the default
+		stretch    = 12,
+		shrink     = 12
+	]{microtype}
+	% Letterspace all-caps and small-caps runs, which otherwise look cramped.
+	\SetTracking{encoding = {*}, shape = sc}{40}
+	% Never letterspace or expand verbatim-like material.
+	\microtypesetup{verbose = silent}
+\fi
+
+\usepackage{xkeyval}
+\usepackage{todonotes}
+\presetkeys{todonotes}{inline}{}

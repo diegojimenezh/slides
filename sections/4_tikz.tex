@@ -1,0 +1,65 @@
+% !TeX root = ../slides.tex
+\subsection{TikZ Overlays}
+
+% WHAT YOU CAN DO ==============================================
+
+
+\begin{frame}{What TikZ Overlays Can Do}
+\begin{tikzpicture}[remember picture, overlay, shift={(current page.center)}]
+	% 1: text placed anywhere
+	\node[align=center] at (-4.5,2) {Sometimes you want text \\ strategically placed \\ somewhere in the slide...};
+	% 2-3: text, then the bounding box around it
+	\only<2->{\node[align=center] at (3.5,-1.8) {...or a bounding box \\ to highlight something...};}
+	\only<3->{\draw[accent, line width=1.8pt] (1.2,-2.6) rectangle (5.8,-1.0);}
+	% 4-5: text, then the arrow connecting the two
+	\only<4->{\node[align=right, anchor=north east] at (-1.2,-0.1) {...and maybe an arrow \\ connecting the two!};}
+	\only<5->{\draw[->, accent, thick] (-3.2,1.1) -- (1.1,-1.0);}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{How It Works}
+
+\begin{itemize}
+\item We overlay an invisible grid: $(x, y) \in [-8, 8] \times [-4.5, 4.5]$ with the origin at the slide center.
+\vfill 
+\item Some usage rules:
+\begin{itemize}
+\item \texttt{[remember picture, overlay, shift=\{(current page.center)\}]} to draw over the text.
+\item Put the \texttt{tikzpicture} at the top of the frame, so \texttt{\textbackslash pause} does not delay it.
+\item Separate its contents with \texttt{\textbackslash only<n>\{$\cdots$\}}.
+\end{itemize}
+
+\vfill 
+\item \texttt{\textbackslash showgrid} makes the grid visible while you place things; delete it when done.
+\vfill 
+\item Needs two compilations to work properly; \texttt{latexmk} does this automatically.
+\end{itemize}
+\vfill
+\begin{semiverbatim}\scriptsize
+\\showgrid   \textcolor{inkfaint}{% while positioning; comment out when done}
+\\begin\{tikzpicture\}[remember picture, overlay, shift=\{(current page.center)\}]
+  \\only<2->\{\\draw[->, accent, thick] (0,-1.6) -{}- (-3.5,0.5);\}
+\\end\{tikzpicture\}
+\end{semiverbatim}
+\vfill
+\end{frame}
+
+% EXAMPLE ======================================================
+
+\begin{frame}{Example: Placing an Arrow and a Box with the Grid}
+\showgrid
+\begin{tikzpicture}[remember picture, overlay, shift={(current page.center)}]
+	% 2: an arrow, read off its start and end on the grid
+	\only<2->{
+		\draw[->, accent, thick] (-5,2) -- (-1.5,0.5);
+		\node[accent, font=\small, anchor=south west] at (-6.9,2.1)
+			{\texttt{\textbackslash draw[->] (-5,2) -{}- (-1.5,0.5);}};
+	}
+	% 3: a box, read off two opposite corners on the grid
+	\only<3->{
+		\draw[accent, line width=1.8pt] (2,-0.5) rectangle (6,-2.5);
+		\node[accent, font=\small, anchor=north] at (4,-2.7)
+			{\texttt{\textbackslash draw (2,-0.5) rectangle (6,-2.5);}};
+	}
+\end{tikzpicture}
+\end{frame}

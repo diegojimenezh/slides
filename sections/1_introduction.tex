@@ -1,0 +1,90 @@
+% !TeX root = ../slides.tex
+
+% These three slides do double duty: they say what the template is, and they
+% are themselves the standard shape of an economics introduction (motivation,
+% what already exists, what this contributes). Swap the text for your paper's
+% and the structure still works.
+
+\begin{frame}{Making Slides Competes with Doing Research}
+\begin{itemize}
+    \item Why not just use someone else's template?
+    \begin{itemize}
+    \item You can spend your time working on your \emph{argument}.
+\end{itemize}
+\end{itemize}
+
+\vfill
+\pause
+
+\begin{itemize}
+ \item[\textcolor{accent}{$\blacktriangleright$}] Clear, easy-to-read slides can improve your paper's reception
+\end{itemize}
+
+\vspace{0.5cm}
+
+\vfill
+\pause
+
+\alertbf{This template:}
+
+\begin{enumerate}
+
+\item Sets the design once with fonts, colors and spacing that already work together
+
+\item Shows, slide by slide, how to use it
+
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[t]{Our Contribution}
+
+\begin{enumerate}
+\item \textbf{A design you do not have to maintain}
+
+\only<1>{
+\citebib{Set in \texttt{preamble.tex}; nothing below needs editing to use it} \vspace{0.25ex}
+
+\vspace{0.5ex}
+
+ \begin{itemize} \small
+     \item [\textcolor{accent}{$\rightarrow$}] Four font schemes, each paired with a \textit{matching} math font
+     \item [\textcolor{accent}{$\rightarrow$}] A color palette with measured contrast ratios, safe for colorblind viewers
+ \end{itemize}}
+\vspace{3ex}\pause
+
+\item \textbf{Examples that show you how to use it}
+
+\only<2>{
+\citebib{One slide each, in \texttt{sections/}; a working \texttt{biblatex} setup is included too \citep{angrist2009}}\vspace{0.25ex}
+
+\vspace{0.5ex}
+
+\begin{itemize} \small
+     \item [\textcolor{accent}{$\rightarrow$}] Arrows, boxes and labels to use anywhere in a slide and a way to place them easily
+     \item [\textcolor{accent}{$\rightarrow$}] Hyperlinks, highlighted table rows and cells, side-by-side figures
+\end{itemize}}
+
+
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[t]{How to Use the Template}
+
+\vspace{2em}
+\begin{enumerate}
+\item Edit the metadata at the top of \texttt{slides.tex}: title, authors, date, presenter. \vfill
+\item Swap the numbered files in \texttt{sections/} for your own, in the order you present them. \vfill
+\item Change the look from the \texttt{USER SETTINGS} block in \texttt{preamble.tex}. \vfill
+\item Compile with \texttt{latexmk slides.tex}; intermediate files go to \texttt{.textmp/}.
+\end{enumerate}
+
+\vfill
+\pause
+
+\takeaway{\textbf{This deck is the documentation:} find the feature you need, and copy it.}
+
+\vfill
+
+\end{frame}

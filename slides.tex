@@ -1,7 +1,5 @@
-% !TeX root = 0_main.tex
-% !TEX TS-program = pdflatex
+% !TeX root = slides.tex
 % !TEX encoding = UTF-8 Unicode
-% !TEX output_directory = .textmp
 
 
 \documentclass[11pt, aspectratio=169, xcolor=table]{beamer}
@@ -12,19 +10,16 @@
 \input{preamble.tex}
 
 
-\usepackage{xkeyval}
-\usepackage{todonotes}
-\presetkeys{todonotes}{inline}{}
 
 
 \title{
-Paper Title: \\ 
-Paper Subtitle
+A Minimal \\ 
+Beamer Template
 }
 \subtitle{ }
 \author{%
-	Author One\inst{1} \and
-	Author Two\inst{2}}
+	Diego Jimenez Hernandez\inst{1} \and
+	CLAUDE\inst{2}}
 \institute{
 	\inst{1} Institution One\\
  	\inst{2} Institution Two}
@@ -47,23 +42,29 @@ Paper Subtitle
 
 %% INTRODUCTION ================================================
 \section{Introduction}
-\input{1_introduction.tex}
+\input{sections/1_introduction}
 
 %% TABLE OF CONTENTS ===========================================
 \input{table_of_contents}
 
 %%  TEMPLATE FEATURES =============================================
-\section{Examples of template features}
+\section{Examples of Template Features}
 
-\input{2_example_math.tex}
+\input{sections/2_example_math}
 
-\input{3_vfill_vspace.tex}
+\input{sections/3_vfill_vspace}
 
-\input{4_tables.tex}
+\input{sections/4_tikz}
 
-\input{5_links.tex}
+\input{sections/5_navigation}
 
-\input{6_figures.tex}
+\input{sections/6_tables}
+
+\input{sections/7_figures}
+
+%% FINAL SECTION ================================================
+\section{Final Thoughts}
+\input{sections/8_closing}
 
 
 %%% APPENDIX ====================================================
@@ -72,9 +73,10 @@ Paper Subtitle
 \setbeamertemplate{footline}{}
 \setlength{\leftmargini}{0pt}
 \setbeamercolor{background canvas}{bg=black}
-\begin{frame}[noframenumbering, c]
-\centering
-\textcolor{white}{\fontfamily{EBGaramond-TLF}\selectfont\Huge\textbf{Appendix}}
+\begin{frame}[noframenumbering]
+\begin{tikzpicture}[remember picture, overlay]
+	\node[text=white, font=\displayfamily\Huge\bfseries] at (current page.center) {Appendix};
+\end{tikzpicture}
 \end{frame}
 }
 
@@ -90,7 +92,7 @@ Paper Subtitle
 
 
 
-\input{7_appendix}
+\input{sections/9_appendix}
 
 
 \end{document}

@@ -1,0 +1,35 @@
+% !TeX root = ../slides.tex
+\subsection{Tables}
+
+\begin{frame}{Highlighting Tables}
+
+% ADD TO THE TOP OF THE SLIDE TO AVOID PAUSES MESSING WITH THEM
+\begin{tikzpicture}[remember picture, overlay, shift={(current page.center)}]
+	% Coordinates read off \showgrid: the shaded row spans y 0.75 to 0.30 and ends
+	% at x = 5.2; the shaded cells are centered at x = -1.4 and end at y = -0.24,
+	% with the Controls row spanning y = -1.22 to -1.45.
+	\only<2>{\node[accent, font=\footnotesize\bfseries, align=left, anchor=west] at (5.3,0.62)
+		{You can \\ highlight \\ specific rows};}
+	\only<3>{\node[accent, font=\footnotesize\bfseries] at (-1.4,-0.73)
+		{Or focus on specific cells};}
+\end{tikzpicture}
+
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+	\begin{tabular}{lHC{2.2cm}HC{2.2cm}HC{2.2cm}}
+		\toprule
+		A & \multicolumn{2}{c}{B} & \multicolumn{2}{c}{C} & \multicolumn{2}{c}{D} \\
+		\midrule
+		\rowcolor<2>{highlight}$\beta$ & . & \only<3>{\cellcolor{highlight}}. &.& . & . & . \\
+		& (0.0) & \only<3>{\cellcolor{highlight}}(0.0) & (0.0) & (0.0) & (0.0) & (0.0) \\
+ \bigstrut[b] \\
+		\addlinespace
+		Controls & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+		\midrule
+		Observations &  100,000 & 100,000 & 100,000 & 100,000 & 100,000 & 100,000 \\
+		\bottomrule
+	\end{tabular}
+\end{adjustbox}
+\end{center}
+
+\end{frame}
