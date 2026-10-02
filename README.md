@@ -201,8 +201,8 @@ Each numbered `.tex` file demonstrates specific features:
 5. **Navigation** - Corner links, return buttons, and slide numbers that link to the outline
 6. **Tables** - Row/column/cell highlighting with TikZ overlays
 7. **Figures** - Side-by-side panel layout. The example PDFs are sized for two
-   panels on a 16:9 slide (3.25 x 2.0 in, golden-ratio proportions at half of
-   a 6.5 in text width) and drawn in the `series`/`fill` palette; use the same
+   panels on a 16:9 slide (2.81 x 1.74 in, golden ratio, i.e. 0.49 of the text width, so
+   10 pt labels and 9 pt ticks appear at their true size) and drawn in the `series`/`fill` palette; use the same
    size and palette for your own figures
 8. **Closing** - Final slide with contact details
 9. **Appendix** - Appendix formatting, an example image and table, and the
