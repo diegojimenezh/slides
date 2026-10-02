@@ -12,7 +12,12 @@ A professional LaTeX Beamer presentation template with clean design, custom styl
 - **Table highlighting** with row/column animations
 - **Custom commands** for consistent formatting
 - **Bibliography support** with biblatex
-- **Modular structure** for easy customization
+- **Modular structure**: one file per section, pulled in from `slides.tex`
+- **Worked examples** of the fiddly parts: spacing, TikZ overlays, navigation
+  links, highlighted tables and side-by-side figures
+- **Self-documenting deck**: each slide demonstrates one feature, so the
+  compiled PDF doubles as the documentation
+- **Clean project root**: `latexmk` sends intermediate files to `.textmp/`
 
 ## Quick Start
 
@@ -41,15 +46,19 @@ bypass latexmk and run bare pdflatex.
 
 ### Basic Setup
 
-1. **Edit presentation metadata** in `slides.tex`:
-   - Title and subtitle (lines 20-23)
-   - Authors and institutions (lines 25-30)
-   - Date (line 31)
-   - Presenter name in footer (line 10)
+1. **Edit presentation metadata** at the top of `slides.tex`:
+   - Presenter name in the footer: `\presenter`
+   - Title and subtitle: `\title`, `\subtitle`
+   - Authors and institutions: `\author`, `\institute`
+   - Date: `\date`
+   - The disclaimer on the title slide
 
 2. **Add your content**:
-   - Modify or replace the numbered `.tex` files (1-7) in `sections/`
-   - Add new sections by creating new `.tex` files and including them in `slides.tex`
+   - Replace the numbered `.tex` files (1-8) in `sections/` with your own, in
+     the order you present them
+   - Add a section by creating a new file in `sections/` and including it in
+     `slides.tex` with `\input{sections/your_file}`
+   - Appendix slides go in `sections/9_appendix.tex`
 
 3. **Update bibliography**:
    - Add references to `references.bib`
@@ -141,6 +150,9 @@ its name, so you can see what is available while building a deck.
 
 **Custom Commands**:
 - `\alertbf{text}` - Accent-colored bold text
+- `\citebib{text}` - Small, faint text for sources and sub-captions
+- `\redsmallbold{text}` - Small bold accent text on a white box
+- `\cmark` - Check mark for table indicator cells
 - `\takeaway[width]{text}` - Key-takeaway callout panel
 - `\showgrid` - Coordinate grid for placing overlay arrows/labels (remove when done)
 - `\displayfamily` - The active scheme's display face
@@ -153,36 +165,48 @@ its name, so you can see what is available while building a deck.
 
 ```
 .
-├── slides.tex                          # Main document (entry point)
-├── preamble.tex                        # Styling and configuration
-├── table_of_contents.tex               # TOC automation
-├── references.bib                      # Bibliography
-├── figures/                            # Exported figures + the script that makes them
-├── sections/1_introduction.tex                  # Introduction slides
-├── sections/2_example_math.tex                  # Math examples
-├── sections/3_vfill_vspace.tex                  # Spacing examples
-├── sections/4_tikz.tex                          # Grid, arrows and boxes with TikZ
-├── sections/5_navigation.tex                    # Corner links, back buttons, outline link
-├── sections/6_tables.tex                        # Table examples
-├── sections/7_figures.tex                       # Figure examples
-└── sections/8_appendix.tex                      # Appendix slides
+├── slides.tex                  # Main document (entry point)
+├── preamble.tex                # Styling and configuration (USER SETTINGS at the top)
+├── table_of_contents.tex       # Outline slide
+├── references.bib              # Bibliography
+├── .latexmkrc                  # latexmk settings: intermediate files go to .textmp/
+├── figures/                    # Exported example figures (PDF)
+│   ├── example_group_means.pdf
+│   └── example_did.pdf
+├── sections/
+│   ├── 1_introduction.tex      # What the template is and how to use it
+│   ├── 2_example_math.tex      # Display and aligned equations
+│   ├── 3_vfill_vspace.tex      # Spacing examples
+│   ├── 4_tikz.tex              # Grid, arrows and boxes with TikZ
+│   ├── 5_navigation.tex        # Corner links, back buttons, outline link
+│   ├── 6_tables.tex            # Table highlighting
+│   ├── 7_figures.tex           # Side-by-side figures
+│   ├── 8_closing.tex           # Closing slide
+│   └── 9_appendix.tex          # Appendix slides and palette reference
+└── LICENSE
 ```
+
+`slides.pdf` is written to the root; `.textmp/` holds the build files and is
+git-ignored.
 
 ## Template Features Demonstrated
 
 Each numbered `.tex` file demonstrates specific features:
 
-1. **Introduction** - Pause animations, citations, itemize bullets
-2. **Math** - Display and inline equations
+1. **Introduction** - What the template offers, how to use it, pause animations
+   and citations
+2. **Math** - Display and aligned equations in the active math font
 3. **Spacing** - `\vfill` and `\vspace` usage
 4. **TikZ** - Overlay text, boxes and arrows, and how to place them with `\showgrid`
 5. **Navigation** - Corner links, return buttons, and slide numbers that link to the outline
-6. **Tables** - Row/column highlighting with TikZ overlays
-7. **Figures** - Side-by-side panel layout, using figures exported from Python
-   (`figures/make_figures.py` draws them in the `series`/`fill` palette at
-   half-text-width golden-ratio size; re-run it with `python3
-   figures/make_figures.py` if you want to tweak them)
-8. **Appendix** - Appendix formatting and the palette reference slide
+6. **Tables** - Row/column/cell highlighting with TikZ overlays
+7. **Figures** - Side-by-side panel layout. The example PDFs are sized for two
+   panels on a 16:9 slide (3.25 x 2.0 in, golden-ratio proportions at half of
+   a 6.5 in text width) and drawn in the `series`/`fill` palette; use the same
+   size and palette for your own figures
+8. **Closing** - Final slide with contact details
+9. **Appendix** - Appendix formatting, an example image and table, and the
+   palette reference slide
 
 ## License
 
